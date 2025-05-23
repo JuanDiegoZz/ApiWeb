@@ -45,10 +45,13 @@ app.use(passport.session());
 const authRoutes = require('./routes/authRoutes');
 const usuariosRoutes = require('./routes/usuariosRoutes');
 const reportesRoutes = require('./routes/reportesRoutes');
+const estadisticasRoutes = require('./routes/estadisticasRoutes'); //Para las tablas de Charts
+
 
 app.use('/reportes', reportesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/auth', authRoutes);
+app.use('/estadisticas', estadisticasRoutes);//Para las tablas de Charts
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
