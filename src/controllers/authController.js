@@ -95,7 +95,7 @@ async function login(req, res) {
 
     // 3) Generar token
     const token = jwt.sign(
-      { id: usuario.id, correo: usuario.correo },
+      { id: usuario.id, correo: usuario.correo, rol: usuario.rol },
       JWT_SECRET,
       { expiresIn: '1h' }
     );
@@ -104,7 +104,7 @@ async function login(req, res) {
     return res.json({
       success: true,
       mensaje: 'Login exitoso',
-      usuario: { id: usuario.id, nombre: usuario.nombre, correo: usuario.correo },
+      usuario: { id: usuario.id, nombre: usuario.nombre},
       token
     });
 

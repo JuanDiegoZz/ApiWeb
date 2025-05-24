@@ -3,7 +3,7 @@ const express        = require('express');
 const passport       = require('passport');
 const router         = express.Router();
 const authController = require('../controllers/authController');
-const verificarToken = require('../middlewares/authMiddleware'); // Importa el middleware
+const { verificarToken, verificarRol } = require('../middlewares/authMiddleware'); // Importa el middleware
 
 // Ruta para registrar usuario (pública)
 router.post('/registro', authController.register);

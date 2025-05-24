@@ -6,6 +6,8 @@ const session = require('express-session');
 const path = require('path');
 const passport = require('passport');
 const cors = require('cors');
+const { verificarToken, verificarRol } = require('./middlewares/authMiddleware');
+
 
 const app = express();
 const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY;
@@ -51,7 +53,8 @@ const estadisticasRoutes = require('./routes/estadisticasRoutes'); //Para las ta
 app.use('/reportes', reportesRoutes);
 app.use('/usuarios', usuariosRoutes);
 app.use('/auth', authRoutes);
-app.use('/estadisticas', estadisticasRoutes);//Para las tablas de Charts
+app.use('/estadisticas', verificarToken, verificarRol('admin'), estadisticasRoutes);
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
